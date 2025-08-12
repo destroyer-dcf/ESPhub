@@ -15,19 +15,19 @@ if (NOT PICO_SDK_VERSION_STRING VERSION_EQUAL "1.5.1")
   message(FATAL_ERROR "Raspberry Pi Pico SDK version 1.5.1 required. Your version is ${PICO_SDK_VERSION_STRING}")
 endif()
 
-project(ps2x2pico C CXX ASM)
+project(esphub C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-add_executable(ps2x2pico src/ps2x2pico.c src/usbin.c src/scancodes.c src/ps2kb.c src/ps2ms.c src/ps2out.c src/ps2in.c)
+add_executable(esphub src/esphub.c src/usbin.c src/scancodes.c src/ps2kb.c src/ps2ms.c src/ps2out.c src/ps2in.c)
 
-pico_generate_pio_header(ps2x2pico ${CMAKE_CURRENT_LIST_DIR}/src/ps2out.pio)
-pico_generate_pio_header(ps2x2pico ${CMAKE_CURRENT_LIST_DIR}/src/ps2in.pio)
+pico_generate_pio_header(esphub ${CMAKE_CURRENT_LIST_DIR}/src/ps2out.pio)
+pico_generate_pio_header(esphub ${CMAKE_CURRENT_LIST_DIR}/src/ps2in.pio)
 
 # print memory usage, enable all warnings
-target_link_options(ps2x2pico PRIVATE -Xlinker --print-memory-usage)
-target_compile_options(ps2x2pico PRIVATE -Wall -Wextra)
+target_link_options(esphub PRIVATE -Xlinker --print-memory-usage)
+target_compile_options(esphub PRIVATE -Wall -Wextra)
 
 ### PS/2 output
 add_compile_definitions(LVOUT=13) # Level shifter pull-up voltage
@@ -46,13 +46,13 @@ if (MS_RATE_HOST_CONTROL)
     add_compile_definitions(MS_RATE_HOST_CONTROL)
 endif()
 
-pico_set_program_name(ps2x2pico "ps2x2pico")
-pico_set_program_version(ps2x2pico "2.1")
+pico_set_program_name(esphub "esphub")
+pico_set_program_version(esphub "0.1")
 
-pico_enable_stdio_uart(ps2x2pico 1)
-pico_enable_stdio_usb(ps2x2pico 0)
+pico_enable_stdio_uart(esphub 1)
+pico_enable_stdio_usb(esphub 0)
 
-target_include_directories(ps2x2pico PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src)
-target_link_libraries(ps2x2pico pico_stdlib hardware_pio tinyusb_host tinyusb_board)
+target_include_directories(esphub PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src)
+target_link_libraries(esphub pico_stdlib hardware_pio tinyusb_host tinyusb_board)
 
-pico_add_extra_outputs(ps2x2pico)
+pico_add_extra_outputs(esphub)

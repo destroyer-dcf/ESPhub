@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  *
  */
-#include "ps2x2pico.h"
+#include "esphub.h"
 
 ps2out ms_out;
 ps2in ms_in;

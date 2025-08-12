@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  *
  */
-#include "ps2x2pico.h"
+#include "esphub.h"
 #include "ps2out.pio.h"
 
 s8 ps2out_prog = -1;

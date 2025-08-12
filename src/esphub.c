@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  *
  */
-#include "ps2x2pico.h"
+#include "esphub.h"
 #include "bsp/board_api.h"
 #include "hardware/gpio.h"
 #include "hardware/watchdog.h"
