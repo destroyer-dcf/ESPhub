@@ -1,6 +1,7 @@
 /*
  * The MIT License (MIT)
  *
+ 
  * Copyright (c) 2024 No0ne (https://github.com/No0ne)
  *           (c) 2024 Bernd Strobel
  *           (c) 2024 pdaxrom (https://github.com/pdaxrom)

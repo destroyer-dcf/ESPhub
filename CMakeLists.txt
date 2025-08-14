@@ -1,3 +1,17 @@
+# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
+if(WIN32)
+    set(USERHOME $ENV{USERPROFILE})
+else()
+    set(USERHOME $ENV{HOME})
+endif()
+set(sdkVersion 2.2.0)
+set(toolchainVersion 13_2_Rel1)
+set(picotoolVersion 2.2.0)
+set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
+if (EXISTS ${picoVscode})
+    include(${picoVscode})
+endif()
+# ====================================================================================
 cmake_minimum_required(VERSION 3.13)
 
 set(CMAKE_C_STANDARD 11)
@@ -11,9 +25,10 @@ set(MS_RATE_HOST_CONTROL ON CACHE BOOL "Allow the host to configure the mouse sa
 # Pull in Raspberry Pi Pico SDK
 include(pico_sdk_import.cmake)
 
-if (NOT PICO_SDK_VERSION_STRING VERSION_EQUAL "1.5.1")
-  message(FATAL_ERROR "Raspberry Pi Pico SDK version 1.5.1 required. Your version is ${PICO_SDK_VERSION_STRING}")
+if (NOT PICO_SDK_VERSION_STRING VERSION_EQUAL "2.2.0")
+  message(FATAL_ERROR "Raspberry Pi Pico SDK version 2.2.0 required. Your version is ${PICO_SDK_VERSION_STRING}")
 endif()
+
 
 project(esphub C CXX ASM)
 
@@ -32,7 +47,7 @@ target_compile_options(esphub PRIVATE -Wall -Wextra)
 ### PS/2 output
 add_compile_definitions(LVOUT=13) # Level shifter pull-up voltage
 add_compile_definitions(KBOUT=11) # Keyboard data GPIO11, clock is GPIO12
-add_compile_definitions(MSOUT=14) # Mouse data GPIO14, clock is GPIO15
+add_compile_definitions(MSOUT=11) # Mouse data GPIO14, clock is GPIO15
 
 ### PS/2 input
 add_compile_definitions(LVIN=5) # Level shifter pull-up voltage
