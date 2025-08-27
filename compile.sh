@@ -23,4 +23,4 @@ make
 cd ..
 
 
-$PICO_SDK_PATH/openocd/0.12.0+dev/openocd.exe -s /Users/destroyer/.pico-sdk/openocd/0.12.0+dev/scripts -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 5000" -c "program build/usb2ps2.elf verify reset exit"
+#$PICO_SDK_PATH/openocd/0.12.0+dev/openocd.exe -s /Users/destroyer/.pico-sdk/openocd/0.12.0+dev/scripts -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 5000" -c "program build/usb2ps2.elf verify reset exit"
