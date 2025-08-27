@@ -2,8 +2,6 @@
 
 export PICO_SDK_PATH=/home/destroyer/Projects/ESPhub/pico-sdk
 
-ARTIFACT="usb2ps2"
-
 echo "PICO_SDK_PATH ha sido configurado a $PICO_SDK_PATH"
 PROJECT_DIR="."
 BUILD_DIR="$PROJECT_DIR/build"
