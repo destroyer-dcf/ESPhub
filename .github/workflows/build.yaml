@@ -26,10 +26,14 @@ jobs:
           chmod +x ./compile.sh
           ./compile.sh
 
-      - name: Subir artefactos .uf2 y .elf
+      - name: Subir esphub.uf2
         uses: actions/upload-artifact@v4
         with:
-          name: pico-firmware
-          path: |
-            **/*.uf2
-            **/*.elf
+          name: esphub-uf2
+          path: build/esphub.uf2
+
+      - name: Subir esphub.elf
+        uses: actions/upload-artifact@v4
+        with:
+          name: esphub-elf
+          path: build/esphub.elf
