@@ -7,13 +7,17 @@ endif()
 set(sdkVersion 2.2.0)
 set(toolchainVersion 13_2_Rel1)
 set(picotoolVersion 2.2.0)
-set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
+set(picoVscode ${CMAKE_SOURCE_DIR}/pico-sdk/cmake/pico-vscode.cmake)
 if (EXISTS ${picoVscode})
     include(${picoVscode})
 endif()
 # ====================================================================================
 cmake_minimum_required(VERSION 3.13)
+# Incluye el pico-sdk desde el submódulo
+set(PICO_SDK_PATH "${CMAKE_SOURCE_DIR}/pico-sdk")
 
+# Inicializa pico-sdk
+include(${PICO_SDK_PATH}/pico_sdk_init.cmake)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
@@ -25,7 +29,7 @@ set(MS_RATE_HOST_CONTROL ON CACHE BOOL "Allow the host to configure the mouse sa
 # Pull in Raspberry Pi Pico SDK
 include(pico_sdk_import.cmake)
 
-if (NOT PICO_SDK_VERSION_STRING VERSION_EQUAL "2.2.0")
+if (NOT PICO_SDK_VERSION_STRING VERSION_EQUAL "1.5.1")
   message(FATAL_ERROR "Raspberry Pi Pico SDK version 2.2.0 required. Your version is ${PICO_SDK_VERSION_STRING}")
 endif()
 
