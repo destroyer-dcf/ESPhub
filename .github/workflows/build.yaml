@@ -29,11 +29,11 @@ jobs:
       - name: Subir esphub.uf2
         uses: actions/upload-artifact@v4
         with:
-          name: esphub-uf2
+          name: esphub.uf2
           path: build/esphub.uf2
 
       - name: Subir esphub.elf
         uses: actions/upload-artifact@v4
         with:
-          name: esphub-elf
+          name: esphub.elf
           path: build/esphub.elf
