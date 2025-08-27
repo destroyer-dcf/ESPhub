@@ -1,0 +1,32 @@
+name: Build Raspberry Pi Pico (fixed SDK)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    if: contains(github.event.head_commit.message, 'Build')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo (incluyendo submódulos)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Build firmware
+        id: build
+        uses: samyarsadat/Pico-Build-Action@v1
+        with:
+          source_dir: .
+          output_dir: build
+          output_ext: "*.uf2 *.elf"
+          cmake_args: "-DCMAKE_BUILD_TYPE=Release"
+
+      - name: Upload firmware artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pico-firmware
+          path: ${{ steps.build.outputs.output_dir }}
