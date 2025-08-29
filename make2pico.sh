@@ -4,7 +4,7 @@ if [ ! -f "$PWD/CMakeLists.txt" ]; then
     echo -e "\033[0;31mError: No se encontró CMakeLists.txt en $PWD\033[0m"
     exit 1
 fi
-
+echo $PWD
 export PICO_SDK_PATH=/home/destroyer/Projects/ESPhub/pico-sdk
 echo "Me han ejecutado desde: $PWD"
 echo "PICO_SDK_PATH ha sido configurado a $PICO_SDK_PATH"

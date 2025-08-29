@@ -39,7 +39,7 @@ if (NOT PICO_SDK_PATH)
             )
         else ()
             FetchContent_Declare(
-                    pico_sdk
+                    pico_sdkd
                     GIT_REPOSITORY https://github.com/raspberrypi/pico-sdk
                     GIT_TAG master
             )
