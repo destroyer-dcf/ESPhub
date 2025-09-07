@@ -38,6 +38,10 @@ project(esphub C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
+
+# Add Pico-PIO-USB library
+add_subdirectory(lib/Pico-PIO-USB)
+
 add_compile_definitions(PICO_DEFAULT_LED_PIN=25)
 add_executable(esphub src/esphub.c src/usbin.c src/scancodes.c src/ps2kb.c src/ps2ms.c src/ps2out.c src/ps2in.c)
 
@@ -72,6 +76,6 @@ pico_enable_stdio_uart(esphub 1)
 pico_enable_stdio_usb(esphub 0)
 
 target_include_directories(esphub PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src)
-target_link_libraries(esphub pico_stdlib hardware_pio tinyusb_host tinyusb_board)
+target_link_libraries(esphub pico_stdlib hardware_pio tinyusb_host tinyusb_board pico_pio_usb)
 
 pico_add_extra_outputs(esphub)

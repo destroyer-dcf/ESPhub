@@ -27,6 +27,11 @@
 #include "bsp/board_api.h"
 #include "hardware/gpio.h"
 #include "hardware/watchdog.h"
+#include "pico/time.h"
+#include "pio_usb.h"
+
+// Configuración del puerto PIO-USB
+#define PIO0_USB_DP   26   // Puerto 1 en GPIO26 (D+), GPIO27 (D-)
 
 int main() {
   board_init();
@@ -41,8 +46,16 @@ int main() {
 
   tuh_hid_set_default_protocol(HID_PROTOCOL_REPORT);
   tusb_init();
+
+    // Configurar primer puerto PIO-USB en pio0
+    pio_usb_configuration_t pio0_cfg = PIO_USB_DEFAULT_CONFIG;
+    pio0_cfg.pin_dp = PIO0_USB_DP;
+    pio0_cfg.alarm_pool = alarm_pool_get_default();
+    pio_usb_host_init(&pio0_cfg);
+
   kb_init(KBOUT, KBIN);
   ms_init(MSOUT, MSIN);
+
 
   
   while(1) {
