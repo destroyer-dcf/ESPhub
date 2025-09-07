@@ -38,7 +38,7 @@ project(esphub C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
-
+add_compile_definitions(PICO_DEFAULT_LED_PIN=25)
 add_executable(esphub src/esphub.c src/usbin.c src/scancodes.c src/ps2kb.c src/ps2ms.c src/ps2out.c src/ps2in.c)
 
 pico_generate_pio_header(esphub ${CMAKE_CURRENT_LIST_DIR}/src/ps2out.pio)
@@ -51,7 +51,7 @@ target_compile_options(esphub PRIVATE -Wall -Wextra)
 ### PS/2 output
 add_compile_definitions(LVOUT=13) # Level shifter pull-up voltage
 add_compile_definitions(KBOUT=11) # Keyboard data GPIO11, clock is GPIO12
-add_compile_definitions(MSOUT=11) # Mouse data GPIO14, clock is GPIO15
+add_compile_definitions(MSOUT=14) # Mouse data GPIO14, clock is GPIO15
 
 ### PS/2 input
 add_compile_definitions(LVIN=5) # Level shifter pull-up voltage
